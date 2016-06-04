@@ -4,7 +4,7 @@ import models
 
 
 class LocalidadAdmin(admin.ModelAdmin):
-    pass
+    ordering = ('nombre',)
 
 
 class CuentaAdmin(admin.ModelAdmin):
