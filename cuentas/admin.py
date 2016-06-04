@@ -10,6 +10,7 @@ class LocalidadAdmin(admin.ModelAdmin):
 
 class CuentaAdmin(admin.ModelAdmin):
     list_filter = ('localidad',)
+    search_fields = ('nombre',)
 
 
 class MovimientoAdmin(admin.ModelAdmin):
