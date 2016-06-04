@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Sum
 
 import models
 
@@ -16,7 +17,12 @@ class LocalidadAdmin(admin.ModelAdmin):
 class CuentaAdmin(admin.ModelAdmin):
     list_filter = ('localidad',)
     search_fields = ('nombre',)
+    list_display = ('nombre', 'localidad', 'total')
 
+    def total(self, obj):
+        suma = obj.movimiento_set.aggregate(Sum('importe'))['importe__sum']
+        if suma:
+            return"$ {0}".format(suma)
 
 class MovimientoAdmin(admin.ModelAdmin):
     fields = ('cuenta', 'fecha', 'comprobante', 'importe')
