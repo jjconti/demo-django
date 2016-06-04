@@ -27,8 +27,7 @@ class Movimiento(models.Model):
     cuenta = models.ForeignKey(Cuenta)
     comprobante = models.TextField()
     fecha = models.DateField()
-    signo = models.CharField(max_length=1, choices=[('+', '+'), ('-', '-')])
     importe = models.DecimalField(max_digits=20, decimal_places=4)
 
     def __unicode__(self):
-        return "{0}{1} ({2})".format(self.signo, self.importe, self.fecha)
+        return "{0} ({1})".format(self.importe, self.fecha)
