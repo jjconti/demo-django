@@ -5,7 +5,12 @@ import models
 
 class LocalidadAdmin(admin.ModelAdmin):
     ordering = ('nombre',)
-    readonly_fields = ('nombre',)
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['nombre']
+        else:
+            return []
 
 
 class CuentaAdmin(admin.ModelAdmin):
@@ -14,9 +19,15 @@ class CuentaAdmin(admin.ModelAdmin):
 
 
 class MovimientoAdmin(admin.ModelAdmin):
+    fields = ('cuenta', 'fecha', 'comprobante', 'importe')
     date_hierarchy = 'fecha'
     list_filter = ('cuenta__nombre',)
-    readonly_fields = ('cuenta', 'fecha', 'importe', 'signo')
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['cuenta', 'fecha', 'importe']
+        else:
+            return []
 
 
 admin.site.register(models.Localidad, LocalidadAdmin)
