@@ -10,6 +10,7 @@ class Localidad(models.Model):
     def __unicode__(self):
         return self.nombre
 
+
 class Cuenta(models.Model):
 
     nombre = models.CharField(max_length=200)
@@ -19,6 +20,7 @@ class Cuenta(models.Model):
 
     def __unicode__(self):
         return "{0}-{1}-{2}".format(self.nombre, self.localidad, self.email)
+
 
 class Movimiento(models.Model):
 
