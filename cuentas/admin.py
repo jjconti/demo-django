@@ -5,6 +5,7 @@ import models
 
 class LocalidadAdmin(admin.ModelAdmin):
     ordering = ('nombre',)
+    readonly_fields = ('nombre',)
 
 
 class CuentaAdmin(admin.ModelAdmin):
@@ -14,6 +15,7 @@ class CuentaAdmin(admin.ModelAdmin):
 class MovimientoAdmin(admin.ModelAdmin):
     date_hierarchy = 'fecha'
     list_filter = ('cuenta__nombre',)
+    readonly_fields = ('cuenta', 'fecha', 'importe', 'signo')
 
 
 admin.site.register(models.Localidad, LocalidadAdmin)
